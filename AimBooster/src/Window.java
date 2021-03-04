@@ -40,17 +40,31 @@ public class Window extends JPanel implements MouseListener {
         }
     }
 
+    private void printClickCoordinate(MouseEvent e){
+        System.out.println("Cooridnates Click: X = "+e.getLocationOnScreen().x+" Y = "+e.getLocationOnScreen().y);
+    }
+
+    private boolean isInRange(MouseEvent e){
+        if(e.getLocationOnScreen().x >= 0 && e.getLocationOnScreen().y >=0 && e.getLocationOnScreen().x < DIMX && e.getLocationOnScreen().y <DIMY)
+            return true;
+        return false;
+    }
+
+    private boolean isInCircle(MouseEvent e) {
+        if ((e.getLocationOnScreen().x <= cir.getX() + cir.getRadius() + difficulty || e.getLocationOnScreen().x <= cir.getX() + cir.getRadius() - difficulty) &&
+                (e.getLocationOnScreen().y <= cir.getY() + cir.getRadius() + difficulty || e.getLocationOnScreen().y <= cir.getY() + cir.getRadius() - difficulty)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getLocationOnScreen().x);
-        System.out.println(e.getLocationOnScreen().y);
-        if(e.getLocationOnScreen().x >= 0 && e.getLocationOnScreen().y >=0 && e.getLocationOnScreen().x < DIMX && e.getLocationOnScreen().y <DIMY)
+        printClickCoordinate(e);
+        if(isInRange(e)) //se è nel range della finestra
         {
-            System.out.println("si");
-            if((e.getLocationOnScreen().x <= cir.getX()+cir.getRadius()+difficulty || e.getLocationOnScreen().x <= cir.getX()+cir.getRadius()-difficulty) &&
-                (e.getLocationOnScreen().y <= cir.getY()+cir.getRadius()+difficulty || e.getLocationOnScreen().y <= cir.getY()+cir.getRadius()-difficulty))
+            if(isInCircle(e))//se è nel range del cerchio
             {
-                System.out.println("di nuovo");
                 moveCircle();
             }
         }
@@ -58,22 +72,22 @@ public class Window extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("mousePressed");
+         return;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("mouseReleased");
+        return;
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("mouseEntered");
+        return;
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        System.out.println("mouseExited");
+        return;
     }
 
     @Override

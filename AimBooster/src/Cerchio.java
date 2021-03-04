@@ -11,11 +11,9 @@ public class Cerchio {
         this.difficulty = difficulty;
         Random r = new Random();
         this.x = r.nextInt(Window.getDIMX());
-        System.out.println(this.x);
         this.y = r.nextInt(Window.getDIMY());
-        System.out.println(this.y);
-        this.radius = r.nextInt(difficulty)+10;
-        System.out.println(this.radius);
+        this.radius = r.nextInt(difficulty)+25;
+        System.out.println("The circle has those bounders X= "+this.x+" Y = "+this.y+" RADIUS = "+this.radius+" DIAMETER = "+this.radius*2);
     }
 
     public int getY() {
